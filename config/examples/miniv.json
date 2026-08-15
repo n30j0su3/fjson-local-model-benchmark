@@ -1,0 +1,5 @@
+{
+  "provider": "openai-compatible",
+  "model": "architect-35b-q6",
+  "endpoint": "http://127.0.0.1:9161/v1"
+}

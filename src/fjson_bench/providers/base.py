@@ -1,0 +1,9 @@
+from dataclasses import dataclass, field
+from typing import Protocol
+@dataclass(frozen=True)
+class ChatResult:
+    text:str; prompt_tokens:int|None; decode_tokens:int|None; wall_seconds:float; native_timings:dict[str,float]=field(default_factory=dict); raw:dict=field(default_factory=dict)
+class Provider(Protocol):
+    def health(self)->dict: ...
+    def model_identity(self)->dict: ...
+    def chat(self,messages:list[dict[str,str]],*,max_tokens:int,temperature:float=0.0)->ChatResult: ...

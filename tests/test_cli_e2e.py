@@ -1,0 +1,23 @@
+import json
+from pathlib import Path
+from fjson_bench.cli import main
+
+
+def test_full_fake_cli_run_and_publish_dry_run(tmp_path):
+    config = {
+        "provider": "fake",
+        "model": "fixture-model",
+        "fixture": str(Path("tests/fixtures/fake_full_responses.json").resolve()),
+        "runs_root": str(tmp_path / "runs"),
+    }
+    config_path = tmp_path / "config.json"
+    config_path.write_text(json.dumps(config))
+    assert main(["run", "--config", str(config_path), "--preset", "full-editorial"]) == 0
+    latest = json.loads((tmp_path / "runs/latest.json").read_text())
+    run = tmp_path / "runs" / latest["run_id"]
+    assert json.loads((run / "results.json").read_text())["state"] == "PASS"
+    assert (run / "report/index.html").exists()
+    assert len(list((run / "deliverables").glob("*/strict/index.html"))) == 3
+    assert len(list((run / "editorial").glob("*"))) == 7
+    assert main(["publish-pack", "--run", str(run), "--destination", str(tmp_path / "pack"), "--dry-run"]) == 0
+    assert not (tmp_path / "pack").exists()

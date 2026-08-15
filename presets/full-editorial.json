@@ -1,0 +1,1 @@
+{"name":"full-editorial","repetitions":3,"speed_prompt":"speed-probe","max_output_tokens":32,"context_ladder_tokens":[2048,8192,32768],"artifacts":true,"editorial":true,"public_pack_dry_run":true}

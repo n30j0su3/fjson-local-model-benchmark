@@ -1,0 +1,1 @@
+REPAIR. Return one complete corrected HTML document only. Change only failures explicitly listed after FAILURES::. Preserve working behavior and all required ids. No external network.

@@ -1,0 +1,1 @@
+PLAN::d3-threejs. Plan an original medieval forest scene, not Zelda and without copyrighted assets. Use Three.js through exactly ./vendor/three.min.js. Include ids scene, reset-camera, quality-toggle, scene-status.

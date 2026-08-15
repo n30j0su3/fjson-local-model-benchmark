@@ -1,0 +1,1 @@
+{"run_id":"fixture-pass","state":"PASS","model":{"id":"demo"},"configuration":{"preset":"full-editorial"},"speed":{"decode_tps":{"p50":42.0,"provenance":"native"}},"context":{"max_verified":32768},"artifacts":[],"qa":{"status":"PASS"},"editorial":{},"evidence":[],"recommendations":["Use for local drafts"],"failures":[]}

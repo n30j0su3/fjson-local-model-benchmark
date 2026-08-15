@@ -1,0 +1,727 @@
+{
+  "synthetic": true,
+  "currency": "USD",
+  "seed": 20260815,
+  "rows": [
+    {
+      "date": "2026-01-01",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 905.15,
+      "orders": 53,
+      "sessions": 864
+    },
+    {
+      "date": "2026-01-02",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1325.94,
+      "orders": 24,
+      "sessions": 797
+    },
+    {
+      "date": "2026-01-03",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1621.11,
+      "orders": 60,
+      "sessions": 570
+    },
+    {
+      "date": "2026-01-04",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1460.73,
+      "orders": 22,
+      "sessions": 980
+    },
+    {
+      "date": "2026-01-05",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1455.66,
+      "orders": 25,
+      "sessions": 724
+    },
+    {
+      "date": "2026-01-06",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 869.7,
+      "orders": 52,
+      "sessions": 846
+    },
+    {
+      "date": "2026-01-07",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 922.67,
+      "orders": 61,
+      "sessions": 438
+    },
+    {
+      "date": "2026-01-08",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1320.09,
+      "orders": 22,
+      "sessions": 646
+    },
+    {
+      "date": "2026-01-09",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1719.68,
+      "orders": 55,
+      "sessions": 588
+    },
+    {
+      "date": "2026-01-10",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1120.99,
+      "orders": 58,
+      "sessions": 314
+    },
+    {
+      "date": "2026-01-11",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1916.8,
+      "orders": 40,
+      "sessions": 334
+    },
+    {
+      "date": "2026-01-12",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1259.2,
+      "orders": 39,
+      "sessions": 788
+    },
+    {
+      "date": "2026-01-13",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1586.88,
+      "orders": 56,
+      "sessions": 760
+    },
+    {
+      "date": "2026-01-14",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1727.3,
+      "orders": 64,
+      "sessions": 817
+    },
+    {
+      "date": "2026-01-15",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1878.66,
+      "orders": 48,
+      "sessions": 979
+    },
+    {
+      "date": "2026-01-16",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 853.37,
+      "orders": 50,
+      "sessions": 688
+    },
+    {
+      "date": "2026-01-17",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1539.98,
+      "orders": 35,
+      "sessions": 401
+    },
+    {
+      "date": "2026-01-18",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1037.49,
+      "orders": 50,
+      "sessions": 320
+    },
+    {
+      "date": "2026-01-19",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1315.05,
+      "orders": 47,
+      "sessions": 923
+    },
+    {
+      "date": "2026-01-20",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1513.6,
+      "orders": 40,
+      "sessions": 851
+    },
+    {
+      "date": "2026-01-21",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1846.77,
+      "orders": 33,
+      "sessions": 701
+    },
+    {
+      "date": "2026-01-22",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1913.65,
+      "orders": 40,
+      "sessions": 640
+    },
+    {
+      "date": "2026-01-23",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 885.01,
+      "orders": 22,
+      "sessions": 678
+    },
+    {
+      "date": "2026-01-24",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1502.68,
+      "orders": 62,
+      "sessions": 865
+    },
+    {
+      "date": "2026-01-25",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1499.06,
+      "orders": 45,
+      "sessions": 331
+    },
+    {
+      "date": "2026-01-26",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1401.14,
+      "orders": 21,
+      "sessions": 749
+    },
+    {
+      "date": "2026-01-27",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1341.43,
+      "orders": 51,
+      "sessions": 753
+    },
+    {
+      "date": "2026-01-28",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1741.15,
+      "orders": 47,
+      "sessions": 428
+    },
+    {
+      "date": "2026-01-29",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1444.52,
+      "orders": 38,
+      "sessions": 497
+    },
+    {
+      "date": "2026-01-30",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1138.82,
+      "orders": 62,
+      "sessions": 698
+    },
+    {
+      "date": "2026-01-31",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 824.24,
+      "orders": 53,
+      "sessions": 993
+    },
+    {
+      "date": "2026-02-01",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1572.53,
+      "orders": 58,
+      "sessions": 923
+    },
+    {
+      "date": "2026-02-02",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1593.0,
+      "orders": 26,
+      "sessions": 617
+    },
+    {
+      "date": "2026-02-03",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1763.06,
+      "orders": 37,
+      "sessions": 755
+    },
+    {
+      "date": "2026-02-04",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1601.46,
+      "orders": 49,
+      "sessions": 601
+    },
+    {
+      "date": "2026-02-05",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1397.83,
+      "orders": 41,
+      "sessions": 347
+    },
+    {
+      "date": "2026-02-06",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1657.15,
+      "orders": 30,
+      "sessions": 713
+    },
+    {
+      "date": "2026-02-07",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 850.19,
+      "orders": 55,
+      "sessions": 608
+    },
+    {
+      "date": "2026-02-08",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 993.07,
+      "orders": 22,
+      "sessions": 568
+    },
+    {
+      "date": "2026-02-09",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1837.03,
+      "orders": 38,
+      "sessions": 929
+    },
+    {
+      "date": "2026-02-10",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 989.75,
+      "orders": 38,
+      "sessions": 955
+    },
+    {
+      "date": "2026-02-11",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 947.02,
+      "orders": 36,
+      "sessions": 742
+    },
+    {
+      "date": "2026-02-12",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1941.59,
+      "orders": 56,
+      "sessions": 533
+    },
+    {
+      "date": "2026-02-13",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 840.14,
+      "orders": 24,
+      "sessions": 498
+    },
+    {
+      "date": "2026-02-14",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1146.76,
+      "orders": 50,
+      "sessions": 423
+    },
+    {
+      "date": "2026-02-15",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1845.05,
+      "orders": 42,
+      "sessions": 602
+    },
+    {
+      "date": "2026-02-16",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1831.38,
+      "orders": 21,
+      "sessions": 964
+    },
+    {
+      "date": "2026-02-17",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1874.19,
+      "orders": 56,
+      "sessions": 659
+    },
+    {
+      "date": "2026-02-18",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1931.96,
+      "orders": 52,
+      "sessions": 388
+    },
+    {
+      "date": "2026-02-19",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1395.54,
+      "orders": 28,
+      "sessions": 918
+    },
+    {
+      "date": "2026-02-20",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1892.63,
+      "orders": 59,
+      "sessions": 767
+    },
+    {
+      "date": "2026-02-21",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1637.82,
+      "orders": 58,
+      "sessions": 476
+    },
+    {
+      "date": "2026-02-22",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 828.74,
+      "orders": 62,
+      "sessions": 614
+    },
+    {
+      "date": "2026-02-23",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 937.61,
+      "orders": 20,
+      "sessions": 841
+    },
+    {
+      "date": "2026-02-24",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 855.92,
+      "orders": 42,
+      "sessions": 496
+    },
+    {
+      "date": "2026-02-25",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1893.46,
+      "orders": 28,
+      "sessions": 616
+    },
+    {
+      "date": "2026-02-26",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1298.98,
+      "orders": 24,
+      "sessions": 942
+    },
+    {
+      "date": "2026-02-27",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1034.62,
+      "orders": 60,
+      "sessions": 327
+    },
+    {
+      "date": "2026-02-28",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1666.5,
+      "orders": 51,
+      "sessions": 585
+    },
+    {
+      "date": "2026-03-01",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1827.54,
+      "orders": 55,
+      "sessions": 398
+    },
+    {
+      "date": "2026-03-02",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1912.23,
+      "orders": 21,
+      "sessions": 417
+    },
+    {
+      "date": "2026-03-03",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1833.43,
+      "orders": 55,
+      "sessions": 748
+    },
+    {
+      "date": "2026-03-04",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1299.44,
+      "orders": 34,
+      "sessions": 867
+    },
+    {
+      "date": "2026-03-05",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1914.51,
+      "orders": 24,
+      "sessions": 638
+    },
+    {
+      "date": "2026-03-06",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 831.09,
+      "orders": 56,
+      "sessions": 537
+    },
+    {
+      "date": "2026-03-07",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1888.4,
+      "orders": 30,
+      "sessions": 889
+    },
+    {
+      "date": "2026-03-08",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 842.84,
+      "orders": 24,
+      "sessions": 660
+    },
+    {
+      "date": "2026-03-09",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 855.84,
+      "orders": 46,
+      "sessions": 737
+    },
+    {
+      "date": "2026-03-10",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 995.76,
+      "orders": 38,
+      "sessions": 661
+    },
+    {
+      "date": "2026-03-11",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1843.57,
+      "orders": 48,
+      "sessions": 368
+    },
+    {
+      "date": "2026-03-12",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1842.92,
+      "orders": 27,
+      "sessions": 590
+    },
+    {
+      "date": "2026-03-13",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1573.34,
+      "orders": 49,
+      "sessions": 576
+    },
+    {
+      "date": "2026-03-14",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1176.66,
+      "orders": 38,
+      "sessions": 306
+    },
+    {
+      "date": "2026-03-15",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1705.15,
+      "orders": 37,
+      "sessions": 357
+    },
+    {
+      "date": "2026-03-16",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 817.48,
+      "orders": 62,
+      "sessions": 819
+    },
+    {
+      "date": "2026-03-17",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1558.51,
+      "orders": 58,
+      "sessions": 671
+    },
+    {
+      "date": "2026-03-18",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 990.35,
+      "orders": 42,
+      "sessions": 618
+    },
+    {
+      "date": "2026-03-19",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1402.12,
+      "orders": 53,
+      "sessions": 710
+    },
+    {
+      "date": "2026-03-20",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1824.75,
+      "orders": 61,
+      "sessions": 541
+    },
+    {
+      "date": "2026-03-21",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 1863.14,
+      "orders": 30,
+      "sessions": 684
+    },
+    {
+      "date": "2026-03-22",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1244.24,
+      "orders": 52,
+      "sessions": 703
+    },
+    {
+      "date": "2026-03-23",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1185.52,
+      "orders": 58,
+      "sessions": 411
+    },
+    {
+      "date": "2026-03-24",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1453.01,
+      "orders": 29,
+      "sessions": 990
+    },
+    {
+      "date": "2026-03-25",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1686.34,
+      "orders": 46,
+      "sessions": 500
+    },
+    {
+      "date": "2026-03-26",
+      "market": "North",
+      "channel": "Paid",
+      "revenue": 1303.4,
+      "orders": 42,
+      "sessions": 556
+    },
+    {
+      "date": "2026-03-27",
+      "market": "South",
+      "channel": "Email",
+      "revenue": 912.71,
+      "orders": 57,
+      "sessions": 551
+    },
+    {
+      "date": "2026-03-28",
+      "market": "North",
+      "channel": "Organic",
+      "revenue": 1419.76,
+      "orders": 21,
+      "sessions": 833
+    },
+    {
+      "date": "2026-03-29",
+      "market": "South",
+      "channel": "Paid",
+      "revenue": 1153.29,
+      "orders": 37,
+      "sessions": 817
+    },
+    {
+      "date": "2026-03-30",
+      "market": "North",
+      "channel": "Email",
+      "revenue": 1527.1,
+      "orders": 32,
+      "sessions": 659
+    },
+    {
+      "date": "2026-03-31",
+      "market": "South",
+      "channel": "Organic",
+      "revenue": 1423.12,
+      "orders": 62,
+      "sessions": 417
+    }
+  ]
+}

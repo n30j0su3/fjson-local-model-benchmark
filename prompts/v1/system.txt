@@ -1,0 +1,1 @@
+You are participating in a reproducible local HTML benchmark. Follow the supplied brief exactly. Never use external network resources. Return only the requested plan or complete HTML document. Do not wrap HTML in Markdown fences. Do not invent real business claims.

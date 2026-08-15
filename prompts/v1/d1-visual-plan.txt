@@ -1,0 +1,1 @@
+PLAN::d1-visual. Produce a concise implementation plan for one self-contained premium HTML visual deliverable with ids nav-overview, nav-metrics, theme-toggle and app.

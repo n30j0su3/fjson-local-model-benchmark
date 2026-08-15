@@ -1,0 +1,1 @@
+PLAN::d2-ecommerce. Plan an offline synthetic ecommerce command center using the provided synthetic fixture. Include ids store-filter, channel-filter, kpi-revenue, chart-sales and insights.

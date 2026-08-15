@@ -1,0 +1,196 @@
+{
+  "id": "a3b265c3-3ac5-4f78-b5ae-a8f3107cd5f8",
+  "name": "FJSON Local Model Benchmark",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cfg",
+              "name": "config",
+              "value": "miniv",
+              "type": "string"
+            },
+            {
+              "id": "pre",
+              "name": "preset",
+              "value": "full-editorial",
+              "type": "string"
+            },
+            {
+              "id": "prv",
+              "name": "provider",
+              "value": "openai-compatible",
+              "type": "string"
+            },
+            {
+              "id": "mdl",
+              "name": "model",
+              "value": "architect-35b-q6",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "inputs",
+      "name": "Set Inputs",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const safe=/^[A-Za-z0-9._:/-]{1,120}$/; const presets=new Set(['speed','quality','full-editorial']); for (const item of $input.all()) { const j=item.json; if (!presets.has(j.preset)) throw new Error('invalid preset'); for (const k of ['config','provider','model']) if (!safe.test(j[k]||'')) throw new Error('invalid '+k); } return $input.all();"
+      },
+      "id": "validate",
+      "name": "Validate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:9163/run",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({config: $json.config, preset: $json.preset, provider: $json.provider, model: $json.model}) }}",
+        "options": {
+          "timeout": 900000
+        }
+      },
+      "id": "run",
+      "name": "Run Benchmark",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const r=$json; if(!r.run_id || !['PASS','FAIL'].includes(r.status)) throw new Error('invalid bridge receipt'); return [{json:r}];"
+      },
+      "id": "receipt",
+      "name": "Validate Receipt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true
+          },
+          "conditions": [
+            {
+              "id": "pass",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "PASS",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "gate",
+      "name": "PASS Gate",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Inputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Inputs": {
+      "main": [
+        [
+          {
+            "node": "Validate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate": {
+      "main": [
+        [
+          {
+            "node": "Run Benchmark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Benchmark": {
+      "main": [
+        [
+          {
+            "node": "Validate Receipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Receipt": {
+      "main": [
+        [
+          {
+            "node": "PASS Gate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d74877c3-bad4-43f5-9dd3-320ff4a51ec8"
+}

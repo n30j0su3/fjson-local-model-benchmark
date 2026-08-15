@@ -1,0 +1,1 @@
+BUILD::d1-visual. Return one complete offline HTML document. It must include ids app, nav-overview, nav-metrics, theme-toggle, and theme-status; responsive layouts; working navigation; inline CSS and JS only. Acceptance contract: after clicking `#theme-toggle`, the textContent of `#theme-status` must become exactly `theme-dark`. Keep the rest of the interface intact.

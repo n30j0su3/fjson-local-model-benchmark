@@ -1,0 +1,21 @@
+[Unit]
+Description=FJSON Local Model Benchmark n8n Bridge
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/fjson-local-model-benchmark
+Environment=PYTHONPATH=/opt/fjson-local-model-benchmark/src
+Environment=FJSON_BENCH_CONFIG_DIR=/etc/fjson-bench
+EnvironmentFile=-/etc/fjson-bench/bridge.env
+ExecStart=/opt/fjson-local-model-benchmark/.venv/bin/python -m fjson_bench.bridge
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/fjson-local-model-benchmark/runs
+
+[Install]
+WantedBy=multi-user.target
