@@ -11,6 +11,8 @@ def test_fixture_is_synthetic_and_sanitized():
 
 def test_build_prompts_declare_exact_interaction_contracts():
     root=Path("prompts/v1")
-    assert '#theme-status` must become exactly `theme-dark' in (root/"d1-visual-build.txt").read_text()
-    assert '#insights` must become exactly `filtered' in (root/"d2-ecommerce-build.txt").read_text()
-    assert '#scene-status` must become exactly `quality-high' in (root/"d3-threejs-build.txt").read_text()
+    d1=(root/"d1-visual-build.txt").read_text(); d2=(root/"d2-ecommerce-build.txt").read_text(); d3=(root/"d3-threejs-build.txt").read_text()
+    assert '#theme-status` must become exactly `theme-dark' in d1 and "4.5:1" in d1 and "14,000 characters" in d1
+    assert '#insights` must become exactly `filtered' in d2 and "four KPI" in d2 and "16,000 characters" in d2
+    assert '#scene-status` must become exactly `quality-high' in d3 and "ambient" in d3 and "clearly visible" in d3 and "14,000 characters" in d3
+    assert "rebuild a concise complete document" in (root/"repair.txt").read_text()

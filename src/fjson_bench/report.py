@@ -21,8 +21,9 @@ def generate_report(results_path: Path, out_dir: Path) -> Path:
         if section == "overview":
             body = (
                 f'<h2>Run {html.escape(data.get("run_id", ""))}</h2>'
-                f'<div class="state {data.get("state", "").lower()}">{html.escape(data.get("state", ""))}</div>'
+                f'<p>Technical contract status</p><div class="state {data.get("state", "").lower()}">{html.escape(data.get("state", ""))}</div>'
                 f'<p>Model: {html.escape(str(data.get("model", {}).get("id", "Unavailable")))}</p>'
+                f'<p>Visual publication remains subject to human review.</p>'
             )
         elif section == "speed":
             body = f'<h2>Speed</h2><div class="metric"><strong>{speed_text}</strong><span>decode tok/s p50</span></div>'

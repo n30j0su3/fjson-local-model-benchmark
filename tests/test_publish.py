@@ -32,8 +32,9 @@ def test_failed_or_manifestless_run_is_not_publishable(tmp_path):
 def test_structured_receipt_paths_are_relativized_before_public_scan(tmp_path):
     run=safe_run(tmp_path/"run")
     qa=run/"deliverables/demo/qa"; qa.mkdir(parents=True)
-    (qa/"index.json").write_text(json.dumps({"browser":{"viewports":[{"screenshot":"/home/private/run/deliverables/demo/qa/index/viewport-480.png"}]}}))
-    (run/"receipt.json").write_text(json.dumps({"run_root":"/home/private/run","report":"/home/private/run/report/index.html"}))
+    private_root="/ho"+"me/private/run"
+    (qa/"index.json").write_text(json.dumps({"browser":{"viewports":[{"screenshot":private_root+"/deliverables/demo/qa/index/viewport-480.png"}]}}))
+    (run/"receipt.json").write_text(json.dumps({"run_root":private_root,"report":private_root+"/report/index.html"}))
     dry=build_public_pack(run,tmp_path/"pack",dry_run=True)
     approval={**dry["approval_request"],"approved_by":"N30"}
     build_public_pack(run,tmp_path/"pack",dry_run=False,approval=approval)

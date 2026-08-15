@@ -85,6 +85,8 @@ benchctl publish-pack --run runs/<run-id> --destination benchmarks/<model>/<run-
 
 The public allowlist excludes raw/strict model responses. It blocks symlinks, path escapes, oversized files, private topology, home paths, bearer-like tokens and private-key material.
 
+> **Status semantics:** `PASS` means the run satisfied its declared static and browser contracts at 1600/768/480 px. It is not an aesthetic endorsement. Public gallery export still requires human visual review and an N30 approval file bound to the dry-run fingerprint.
+
 ## n8n one-click wrapper
 
 `workflows/n8n/miniv-local-model-benchmark.json` is an inactive, importable thin wrapper. It calls the host bridge over Docker's `host.docker.internal`; benchmark logic remains in this repository.

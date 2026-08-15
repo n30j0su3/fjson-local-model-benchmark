@@ -9,6 +9,18 @@ def test_interaction_changes_dom_at_three_viewports(tmp_path):
     assert all(x["interaction_pass"] and not x["horizontal_overflow"] for x in r["viewports"])
     assert r["status"]=="PASS"
 
+def test_select_interaction_chooses_next_option_at_three_viewports(tmp_path):
+    html=tmp_path/"select.html"
+    html.write_text('''<!doctype html><html><body>
+<select id="store"><option value="all">All</option><option value="north">North</option></select>
+<div id="state">ready</div><script>
+document.querySelector("#store").addEventListener("change",()=>document.querySelector("#state").textContent="filtered")
+</script></body></html>''')
+    receipt=run_browser_qa(html,tmp_path/"select-qa",[{"selector":"#store","expect":"#state","value":"filtered"}])
+    assert receipt["status"]=="PASS"
+    assert all(x["interaction_pass"] for x in receipt["viewports"])
+
+
 def test_blocked_network_attempt_is_failure(tmp_path):
     html=tmp_path/"net.html"
     html.write_text('<!doctype html><html><body><img src="https://example.invalid/pixel.png"></body></html>')

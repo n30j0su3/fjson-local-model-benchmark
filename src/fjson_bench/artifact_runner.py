@@ -40,7 +40,7 @@ def run_artifact(provider, challenge: str, plan_prompt: str, build_prompt: str, 
     qa_root = root / "qa"
     plan = provider.chat([{"role": "user", "content": plan_prompt}], max_tokens=1024, temperature=0.0)
     _write_raw(raw_root / "plan.json", plan)
-    build = provider.chat([{"role": "user", "content": build_prompt}], max_tokens=8192, temperature=0.0)
+    build = provider.chat([{"role": "user", "content": build_prompt}], max_tokens=16384, temperature=0.0)
     _write_raw(raw_root / "build.json", build)
     strict_path = root / "strict" / "index.html"
     strict_path.parent.mkdir(parents=True, exist_ok=True)
@@ -72,7 +72,7 @@ def run_artifact(provider, challenge: str, plan_prompt: str, build_prompt: str, 
     except ArtifactError as error:
         failures = [{"code": "HTML_EXTRACT", "detail": str(error)}]
     repair_text = repair_prompt + "\nBUILD_CONTRACT::\n" + build_prompt + "\nFAILURES::" + json.dumps(failures) + "\nORIGINAL::\n" + build.text
-    repair = provider.chat([{"role": "user", "content": repair_text}], max_tokens=8192, temperature=0.0)
+    repair = provider.chat([{"role": "user", "content": repair_text}], max_tokens=16384, temperature=0.0)
     _write_raw(raw_root / "repair.json", repair)
     repaired_path = root / "repaired" / "index.html"
     repaired_path.parent.mkdir(parents=True, exist_ok=True)

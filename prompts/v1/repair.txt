@@ -1,1 +1,1 @@
-REPAIR. Return one complete corrected HTML document only. Change only failures explicitly listed after FAILURES::. Preserve working behavior and all required ids. No external network.
+REPAIR. Return one complete corrected HTML document only. Change only failures explicitly listed after FAILURES::. Preserve working behavior and all required ids. No external network. If the original is truncated or lacks a closing `</html>`, rebuild a concise complete document within the character budget declared in BUILD_CONTRACT; do not continue the fragment and do not add commentary.

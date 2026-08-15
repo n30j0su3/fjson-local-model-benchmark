@@ -18,7 +18,14 @@ def run_browser_qa(source,out_dir,interactions=None):
                         else: blocked.append(rt.request.url); rt.abort()
                     page.route("**/*",route); page.goto(f"http://127.0.0.1:{server.server_port}/index.html",wait_until="domcontentloaded")
                     ok=True
-                    for a in interactions or []: page.locator(a["selector"]).click(); ok=ok and page.locator(a["expect"]).text_content()==a["value"]
+                    for a in interactions or []:
+                        control=page.locator(a["selector"])
+                        select_state=control.evaluate("el => el.tagName === 'SELECT' ? {index: el.selectedIndex, count: el.options.length} : null")
+                        if select_state and select_state["count"] > 1:
+                            control.select_option(index=(select_state["index"]+1)%select_state["count"])
+                        else:
+                            control.click()
+                        ok=ok and page.locator(a["expect"]).text_content()==a["value"]
                     overflow=page.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth")
                     shot=out_dir/f"viewport-{width}.png"; page.screenshot(path=str(shot),full_page=True); rows.append({"width":width,"interaction_pass":ok,"horizontal_overflow":bool(overflow),"screenshot":str(shot)}); page.close()
             finally: browser.close()
