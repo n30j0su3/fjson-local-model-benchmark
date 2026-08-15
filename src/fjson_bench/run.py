@@ -92,12 +92,12 @@ def execute_run(config_path, preset_name, provider_override=None, model_override
             prompts = load_promptset(PROJECT_ROOT / "prompts/v1")
             repair = prompts["repair.txt"].text
             challenges = [
-                ("d1-visual", "d1-visual-plan.txt", "d1-visual-build.txt", ["app", "nav-overview", "nav-metrics", "theme-toggle", "theme-status"], [{"selector": "#theme-toggle", "expect": "#theme-status", "value": "theme-dark"}], None),
-                ("d2-ecommerce", "d2-ecommerce-plan.txt", "d2-ecommerce-build.txt", ["store-filter", "channel-filter", "kpi-revenue", "chart-sales", "insights"], [{"selector": "#store-filter", "expect": "#insights", "value": "filtered"}], None),
-                ("d3-threejs", "d3-threejs-plan.txt", "d3-threejs-build.txt", ["scene", "reset-camera", "quality-toggle", "scene-status"], [{"selector": "#quality-toggle", "expect": "#scene-status", "value": "quality-high"}], package_three_source),
+                ("d1-visual", "d1-visual-plan.txt", "d1-visual-build.txt", ["app", "nav-overview", "nav-metrics", "theme-toggle", "theme-status"], [{"selector": "#theme-toggle", "expect": "#theme-status", "value": "theme-dark"}], None, None),
+                ("d2-ecommerce", "d2-ecommerce-plan.txt", "d2-ecommerce-build.txt", ["store-filter", "channel-filter", "kpi-revenue", "chart-sales", "insights"], [{"selector": "#store-filter", "expect": "#insights", "value": "filtered"}], None, None),
+                ("d3-threejs", "d3-threejs-plan.txt", "d3-threejs-build.txt", ["scene", "reset-camera", "quality-toggle", "scene-status"], [{"selector": "#quality-toggle", "expect": "#scene-status", "value": "quality-high"}], package_three_source, 6.0),
             ]
-            for challenge, plan_name, build_name, ids, interactions, packager in challenges:
-                outcome = run_artifact(provider, challenge, prompts[plan_name].text, prompts[build_name].text, repair, run_root / "deliverables", ids, interactions, packager)
+            for challenge, plan_name, build_name, ids, interactions, packager, min_mean_luminance in challenges:
+                outcome = run_artifact(provider, challenge, prompts[plan_name].text, prompts[build_name].text, repair, run_root / "deliverables", ids, interactions, packager, min_mean_luminance)
                 results["artifacts"].append(_outcome_dict(outcome, run_root))
         ledger.transition(RunState.QA)
         artifact_pass = all(item["final_status"] == "PASS" for item in results["artifacts"])

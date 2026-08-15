@@ -21,11 +21,11 @@ def _write_raw(path: Path, result) -> None:
     path.write_text(json.dumps({"text": result.text, "raw": result.raw}, ensure_ascii=False, sort_keys=True))
 
 
-def _qa(path: Path, qa_root: Path, required_ids: list[str], interactions: list[dict[str, str]]) -> tuple[str, Path]:
+def _qa(path: Path, qa_root: Path, required_ids: list[str], interactions: list[dict[str, str]], min_mean_luminance: float | None = None) -> tuple[str, Path]:
     static = run_static_qa(path, required_ids)
     evidence = {"static": static, "browser": None}
     if static["status"] == "PASS":
-        evidence["browser"] = run_browser_qa(path, qa_root / path.stem, interactions)
+        evidence["browser"] = run_browser_qa(path, qa_root / path.stem, interactions, min_mean_luminance=min_mean_luminance)
     status = "PASS" if static["status"] == "PASS" and evidence["browser"] and evidence["browser"]["status"] == "PASS" else "FAIL"
     evidence["status"] = status
     receipt = qa_root / f"{path.stem}.json"
@@ -34,7 +34,7 @@ def _qa(path: Path, qa_root: Path, required_ids: list[str], interactions: list[d
     return status, receipt
 
 
-def run_artifact(provider, challenge: str, plan_prompt: str, build_prompt: str, repair_prompt: str, root: Path, required_ids: list[str], interactions: list[dict[str, str]], packager=None) -> ArtifactOutcome:
+def run_artifact(provider, challenge: str, plan_prompt: str, build_prompt: str, repair_prompt: str, root: Path, required_ids: list[str], interactions: list[dict[str, str]], packager=None, min_mean_luminance: float | None = None) -> ArtifactOutcome:
     root = Path(root) / challenge
     raw_root = root / "raw"
     qa_root = root / "qa"
@@ -53,7 +53,7 @@ def run_artifact(provider, challenge: str, plan_prompt: str, build_prompt: str, 
         if packager is not None:
             packaged_path = root / "packaged" / "index.html"
             qa_candidate = packager(strict_path, packaged_path)
-        status, receipt = _qa(qa_candidate, qa_root, required_ids, interactions)
+        status, receipt = _qa(qa_candidate, qa_root, required_ids, interactions, min_mean_luminance)
         qa_paths.append(str(receipt))
         if status == "PASS":
             return ArtifactOutcome(challenge, str(strict_path), str(packaged_path), None, 0, "PASS", tuple(qa_paths))
@@ -81,7 +81,7 @@ def run_artifact(provider, challenge: str, plan_prompt: str, build_prompt: str, 
         repaired_path.write_text(extract_html(repair.text))
         if packager is not None:
             repaired_candidate = packager(repaired_path, root / "repaired-packaged" / "index.html")
-        status, receipt = _qa(repaired_candidate, qa_root, required_ids, interactions)
+        status, receipt = _qa(repaired_candidate, qa_root, required_ids, interactions, min_mean_luminance)
         qa_paths.append(str(receipt))
     except ArtifactError:
         status = "FAIL"

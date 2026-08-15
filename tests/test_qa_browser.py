@@ -21,6 +21,15 @@ document.querySelector("#store").addEventListener("change",()=>document.querySel
     assert all(x["interaction_pass"] for x in receipt["viewports"])
 
 
+def test_minimum_mean_luminance_blocks_nearly_black_artifact(tmp_path):
+    html=tmp_path/"dark.html"
+    html.write_text('<!doctype html><html><style>html,body{margin:0;background:#000;color:#000}</style><body><button id="toggle">x</button><div id="state">ready</div><script>toggle.onclick=()=>state.textContent="changed"</script></body></html>')
+    receipt=run_browser_qa(html,tmp_path/"dark-qa",[{"selector":"#toggle","expect":"#state","value":"changed"}],min_mean_luminance=6.0)
+    assert receipt["status"]=="FAIL"
+    assert all(not x["visual_pass"] for x in receipt["viewports"])
+    assert all(any(f["code"]=="LOW_MEAN_LUMINANCE" for f in x["failures"]) for x in receipt["viewports"])
+
+
 def test_blocked_network_attempt_is_failure(tmp_path):
     html=tmp_path/"net.html"
     html.write_text('<!doctype html><html><body><img src="https://example.invalid/pixel.png"></body></html>')

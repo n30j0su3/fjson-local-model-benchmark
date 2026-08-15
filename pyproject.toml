@@ -9,8 +9,8 @@ requires-python = ">=3.11"
 dependencies = []
 
 [project.optional-dependencies]
-test = ["pytest>=8.3", "playwright>=1.50"]
-qa = ["playwright>=1.50"]
+test = ["pytest>=8.3", "playwright>=1.50", "Pillow>=11"]
+qa = ["playwright>=1.50", "Pillow>=11"]
 
 [project.scripts]
 benchctl = "fjson_bench.cli:entrypoint"
