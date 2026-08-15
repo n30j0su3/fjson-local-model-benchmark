@@ -8,6 +8,7 @@ def _hash_tree(root):
     return h.hexdigest()
 def export_pack(pack,gallery,slug,dry_run=True,require_git_clean=True,approval=None):
     pack=Path(pack).resolve(); gallery=Path(gallery).resolve(); dest=gallery/"benchmarks"/slug
+    if not (pack/"report/index.html").is_file(): raise RuntimeError("pack report/index.html required")
     pack_sha256=_hash_tree(pack)
     if require_git_clean:
         p=subprocess.run(["git","status","--porcelain"],cwd=gallery,capture_output=True,text=True)
@@ -25,8 +26,8 @@ def export_pack(pack,gallery,slug,dry_run=True,require_git_clean=True,approval=N
     if approval.get("pack_sha256")!=pack_sha256:
         raise RuntimeError("approval pack fingerprint mismatch")
     shutil.copytree(pack,dest)
-    card=f'\n<a class="benchmark-card" href="benchmarks/{slug}/index.html" data-export="{slug}">{slug}</a>\n'
-    row=f'\n- [{slug}](benchmarks/{slug}/index.html)\n'
+    card=f'\n<a class="benchmark-card" href="benchmarks/{slug}/report/index.html" data-export="{slug}">{slug}</a>\n'
+    row=f'\n- [{slug}](benchmarks/{slug}/report/index.html)\n'
     idx=gallery/"index.html"; idx.write_text(idx.read_text().replace(END,card+END))
     readme=gallery/"README.md"; readme.write_text(readme.read_text().replace(END,row+END))
     return {"status":"EXPORTED","destination":str(dest),"pack_sha256":pack_sha256}

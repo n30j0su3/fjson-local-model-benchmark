@@ -1,4 +1,4 @@
-import json
+import hashlib,json
 from pathlib import Path
 from fjson_bench.cli import main
 
@@ -25,5 +25,8 @@ def test_full_fake_cli_run_and_publish_dry_run(tmp_path):
     assert d2["browser"]["minimum_mean_luminance"] is None
     assert d3["browser"]["minimum_mean_luminance"]==6.0
     assert len(list((run / "editorial").glob("*"))) == 7
+    manifest=json.loads((run/"manifest.json").read_text())
+    assert "receipt.json" not in manifest["files"]
+    assert all(hashlib.sha256((run/rel).read_bytes()).hexdigest()==expected for rel,expected in manifest["files"].items())
     assert main(["publish-pack", "--run", str(run), "--destination", str(tmp_path / "pack"), "--dry-run"]) == 0
     assert not (tmp_path / "pack").exists()

@@ -51,7 +51,7 @@ def _outcome_dict(outcome, root):
 def _hash_manifest(root):
     files = {}
     for path in sorted(root.rglob("*")):
-        if path.is_file() and path.name != "manifest.json":
+        if path.is_file() and path.name not in {"manifest.json", "receipt.json"}:
             files[str(path.relative_to(root))] = hashlib.sha256(path.read_bytes()).hexdigest()
     return {"version": 1, "files": files}
 
@@ -110,9 +110,9 @@ def execute_run(config_path, preset_name, provider_override=None, model_override
         results["recommendations"] = ["Use only for local work matching the verified artifact and runtime gates."]
         (run_root / "results.json").write_text(json.dumps(results, indent=2, sort_keys=True))
         generate_report(run_root / "results.json", run_root / "report")
-        (run_root / "manifest.json").write_text(json.dumps(_hash_manifest(run_root), indent=2, sort_keys=True))
         final_state = RunState.PASS if results["state"] == "PASS" else RunState.FAIL
         ledger.transition(final_state, {"results": "results.json", "report": "report/index.html"})
+        (run_root / "manifest.json").write_text(json.dumps(_hash_manifest(run_root), indent=2, sort_keys=True))
         receipt = {"run_id": run_id, "status": results["state"], "run_root": str(run_root), "report": str(run_root / "report/index.html")}
         (run_root / "receipt.json").write_text(json.dumps(receipt, indent=2))
         (runs_root / "latest.json").write_text(json.dumps(receipt, indent=2))
