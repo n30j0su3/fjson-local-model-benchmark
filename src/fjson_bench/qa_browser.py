@@ -27,12 +27,40 @@ def run_browser_qa(source,out_dir,interactions=None,min_mean_luminance=None):
                         else:
                             control.click()
                         ok=ok and page.locator(a["expect"]).text_content()==a["value"]
+                    page.wait_for_timeout(350)
+                    page.evaluate("""async () => {
+                      const root = document.documentElement;
+                      const priorScrollBehavior = root.style.scrollBehavior;
+                      root.style.scrollBehavior = 'auto';
+                      const step = Math.min(240, Math.max(120, Math.floor(window.innerHeight * 0.25)));
+                      const pause = () => new Promise(resolve => setTimeout(resolve, 90));
+                      for (let y = 0; y <= root.scrollHeight - window.innerHeight; y += step) {
+                        window.scrollTo(0, y);
+                        await pause();
+                      }
+                      window.scrollTo(0, root.scrollHeight);
+                      await pause();
+                      window.scrollTo(0, 0);
+                      root.style.scrollBehavior = priorScrollBehavior;
+                    }""")
+                    page.wait_for_timeout(700)
+                    reveal_state=page.evaluate("""() => {
+                      const nodes = [...document.querySelectorAll('.reveal')];
+                      const visible = nodes.filter(el => {
+                        const style = getComputedStyle(el);
+                        return style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity) >= 0.5;
+                      });
+                      return {total: nodes.length, visible: visible.length};
+                    }""")
                     overflow=page.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth")
                     shot=out_dir/f"viewport-{width}.png"; page.screenshot(path=str(shot),full_page=True)
                     mean_luminance=round(ImageStat.Stat(Image.open(shot).convert("L")).mean[0],2)
                     visual_pass=min_mean_luminance is None or mean_luminance>=min_mean_luminance
                     failures=[] if visual_pass else [{"code":"LOW_MEAN_LUMINANCE","actual":mean_luminance,"minimum":min_mean_luminance,"width":width}]
-                    rows.append({"width":width,"interaction_pass":ok,"horizontal_overflow":bool(overflow),"mean_luminance":mean_luminance,"visual_pass":visual_pass,"failures":failures,"screenshot":str(shot)}); page.close()
+                    if reveal_state["total"] and reveal_state["visible"] < reveal_state["total"]:
+                        failures.append({"code":"UNREVEALED_CONTENT","actual":reveal_state["visible"],"expected":reveal_state["total"],"width":width})
+                        visual_pass=False
+                    rows.append({"width":width,"interaction_pass":ok,"horizontal_overflow":bool(overflow),"mean_luminance":mean_luminance,"visual_pass":visual_pass,"reveal_total":reveal_state["total"],"reveal_visible":reveal_state["visible"],"failures":failures,"screenshot":str(shot)}); page.close()
             finally: browser.close()
     finally: server.shutdown(); thread.join()
     status="PASS" if all(x["interaction_pass"] and x["visual_pass"] and not x["horizontal_overflow"] for x in rows) and not errors and not blocked else "FAIL"

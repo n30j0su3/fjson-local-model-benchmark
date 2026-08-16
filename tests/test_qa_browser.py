@@ -36,3 +36,16 @@ def test_blocked_network_attempt_is_failure(tmp_path):
     receipt=run_browser_qa(html,tmp_path/"net-qa",[])
     assert receipt["status"]=="FAIL"
     assert receipt["blocked_requests"]
+
+
+def test_scroll_reveal_elements_are_activated_before_full_page_screenshot(tmp_path):
+    html=tmp_path/"reveal.html"
+    blocks="".join(f'<div class="reveal">block-{i}</div><div class="spacer"></div>' for i in range(8))
+    html.write_text(f'''<!doctype html><html><style>
+    html{{scroll-behavior:smooth}}body{{margin:0}}.spacer{{height:420px}}.reveal{{height:70px;opacity:0}}.reveal.in{{opacity:1}}
+    </style><body>{blocks}
+    <script>const io=new IntersectionObserver(es=>es.forEach(e=>{{if(e.isIntersecting)e.target.classList.add('in')}}),{{threshold:.15}});document.querySelectorAll('.reveal').forEach(x=>io.observe(x))</script>
+    </body></html>''')
+    receipt=run_browser_qa(html,tmp_path/"reveal-qa",[])
+    assert receipt["status"]=="PASS"
+    assert all(row["reveal_total"]==8 and row["reveal_visible"]==8 for row in receipt["viewports"])
